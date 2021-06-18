@@ -7,7 +7,9 @@ const ImageContainer = ({ imgSrc }) => {
 
 const Image = styled.img`
   width: 13vmin;
-  height: auto;
+  height: 13vmin;
+  object-fit: cover;
+  border: 3px solid #38b6ff;
   border-radius: 2vmin;
 `;
 

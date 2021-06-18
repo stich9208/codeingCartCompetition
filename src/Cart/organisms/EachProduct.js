@@ -22,9 +22,12 @@ const EachProduct = ({ id, imgSrc, name, price, desc, count }) => {
 
 const EachContainer = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 100%;
   max-height: 15vmin;
+  margin-bottom: 2vmin;
   padding: 1vmin 1vmin;
   background-color: #ffffff;
   border-radius: 2vmin;
@@ -35,11 +38,18 @@ const EachContainer = styled.div`
 const DescSection = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  width: 30vmin;
+  height: 100%;
 `;
 
-const NameColumn = styled.span``;
+const NameColumn = styled.span`
+  font-weight: 600;
+`;
 
-const InfoColumn = styled.span``;
+const InfoColumn = styled.span`
+  color: gray;
+`;
 
 const PriceSection = styled.span``;
 
