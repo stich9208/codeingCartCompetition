@@ -21,7 +21,7 @@ const Container = styled.div`
   height: 100vh;
   margin-top: -7vh;
   padding: 11vh 4vh 4vh;
-  background: linear-gradient(#dbdbdb, #eaeaea);
+  background: linear-gradient(#fafafa, #eaeaea);
 `;
 
 export default CartContainer;

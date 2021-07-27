@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
-const CountBox = () => {
+const CountBox = ({ id, count }) => {
+  const [quantity, setQuantity] = useState(count);
+  const addQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
   return (
     <BoxContainer>
-      <PlusBtn>
+      <PlusBtn onClick={addQuantity}>
         <FaPlus style={{ color: "#38b6ff" }} />
       </PlusBtn>
-      <ProductCount value="23" />
+      <ProductCount value={quantity} />
       <MinusBtn>
         <FaMinus style={{ color: "#38b6ff" }} />
       </MinusBtn>
@@ -28,18 +33,21 @@ const BoxContainer = styled.div`
 const PlusBtn = styled.button`
   display: flex;
   align-items: center;
+  font-size: 2vmin;
 `;
 
 const MinusBtn = styled.button`
   display: flex;
   align-items: center;
+  font-size: 2vmin;
 `;
 
 const ProductCount = styled.input`
   width: 5vmin;
   height: 5vmin;
+  margin: 1vmin 0;
   text-align: center;
-  border: 2px solid #eaeaea;
+  border: 2px solid lightgrey;
   border-radius: 1vmin;
 `;
 

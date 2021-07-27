@@ -13,7 +13,7 @@ const EachProduct = ({ id, imgSrc, name, price, desc, count }) => {
         <NameColumn>{name}</NameColumn>
         <InfoColumn>{desc}</InfoColumn>
       </DescSection>
-      <CountBox count={count} />
+      <CountBox id={id} count={count} />
       <PriceSection>{price}</PriceSection>
       <DeleteBtn />
     </EachContainer>
@@ -28,11 +28,9 @@ const EachContainer = styled.div`
   height: 100%;
   max-height: 15vmin;
   margin-bottom: 2vmin;
-  padding: 1vmin 1vmin;
+  padding: 1vmin 3vmin 1vmin 1vmin;
   background-color: #ffffff;
-  border-radius: 2vmin;
-  border: 2px solid #eaeaea;
-  /* box-shadow: 0 0 10px -4px gray; */
+  border-bottom: 2px solid lightgrey;
 `;
 
 const DescSection = styled.div`

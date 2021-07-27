@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const DeleteBtn = () => {
   return (
     <DeleteIcon>
-      <FaTrashAlt style={{ color: "" }} />
+      <FaRegTrashAlt style={{ fontSize: "2.5vmin", color: "grey" }} />
     </DeleteIcon>
   );
 };

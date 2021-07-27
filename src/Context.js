@@ -7,5 +7,5 @@ export const CountContext = createContext({
 
 export const CartListContext = createContext({
   cartList: [],
-  changeCartList: () => {},
+  changeCartList: {},
 });
