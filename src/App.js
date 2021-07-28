@@ -32,9 +32,31 @@ const App = () => {
     setCartList(cartList.filter((item) => item.id !== itemId));
   };
 
+  const increaseCount = (id) => {
+    cartList.filter((item) =>
+      item.id === id
+        ? ({ ...item, productCount: item.productCount++ },
+          console.log(item.productCount))
+        : item
+    );
+  };
+
+  const decreaseCount = (id) => {
+    cartList.filter((item) =>
+      item.productCount <= 0
+        ? item
+        : item.id === id
+        ? ({ ...item, productCount: item.productCount-- },
+          console.log(item.productCount))
+        : item
+    );
+  };
+
   const changeCartList = {
     addCartItem,
     deleteCartItem,
+    increaseCount,
+    decreaseCount,
   };
 
   const cartValue = { cartList, changeCartList };

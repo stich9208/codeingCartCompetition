@@ -1,11 +1,5 @@
 import { createContext } from "react";
 
-export const CountContext = createContext({
-  count: 0,
-  changeCount: () => {},
-});
+export const CountContext = createContext(null);
 
-export const CartListContext = createContext({
-  cartList: [],
-  changeCartList: {},
-});
+export const CartListContext = createContext(null);

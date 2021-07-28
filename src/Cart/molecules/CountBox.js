@@ -2,19 +2,21 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
+import { CartListContext } from "../../Context";
+
 const CountBox = ({ id, count }) => {
   const [quantity, setQuantity] = useState(count);
-  const addQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+
+  const { increaseCount } = useContext(CartListContext).changeCartList;
+  const { decreaseCount } = useContext(CartListContext).changeCartList;
 
   return (
     <BoxContainer>
-      <PlusBtn onClick={addQuantity}>
+      <PlusBtn onClick={() => increaseCount(id)}>
         <FaPlus style={{ color: "#38b6ff" }} />
       </PlusBtn>
       <ProductCount value={quantity} />
-      <MinusBtn>
+      <MinusBtn onClick={() => decreaseCount(id)}>
         <FaMinus style={{ color: "#38b6ff" }} />
       </MinusBtn>
     </BoxContainer>
