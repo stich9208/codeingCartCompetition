@@ -10,12 +10,16 @@ import { fetchURI } from "./config";
 
 const App = () => {
   const [cartList, setCartList] = useState([]);
+  const [shippingCost, setShippingCost] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
 
   const mountFetch = () => {
     fetch(fetchURI)
       .then((res) => res.json())
       .then((res) => {
         setCartList(res.cartList);
+        setShippingCost(res.shippingPrice);
+        setCartCount(res.cartCount);
       })
       .catch((err) => console.log(err));
   };
@@ -57,6 +61,8 @@ const App = () => {
     deleteCartItem,
     increaseCount,
     decreaseCount,
+    shippingCost,
+    cartCount,
   };
 
   const cartValue = { cartList, changeCartList };

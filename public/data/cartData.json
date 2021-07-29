@@ -1,13 +1,13 @@
 {
-  "cartCount": 3,
-  "shippingPrice": "3000",
+  "cartCount": 6,
+  "shippingPrice": "3.5",
   "cartList": [
     {
       "id": 1,
       "imgSrc": "https://images.unsplash.com/photo-1594215741864-6024bef4f3e3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2VubmhlaXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
       "name": "sennheiser HD 206",
       "description": "overear headphone, wired",
-      "price": "92000",
+      "price": "92",
       "productCount": 1
     },
     {
@@ -15,7 +15,7 @@
       "imgSrc": "https://images.unsplash.com/photo-1600375104627-c94c416deefa?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YWlycG9kfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
       "name": "Airpods 2nd generation",
       "description": "ineare earbuds wireless opentype",
-      "price": "154900",
+      "price": "154",
       "productCount": 1
     },
     {
@@ -23,7 +23,7 @@
       "imgSrc": "https://images.unsplash.com/photo-1600374917838-1df876d745c7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGdhbGF4eSUyMGJ1ZHN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
       "name": "Galaxy buds live",
       "description": "ineare earbuds wireless opentype",
-      "price": "211000",
+      "price": "211",
       "productCount": 1
     },
     {
@@ -31,7 +31,7 @@
       "imgSrc": "https://images.unsplash.com/photo-1594215741864-6024bef4f3e3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2VubmhlaXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
       "name": "sennheiser HD 206",
       "description": "overear headphone, wired",
-      "price": "92000",
+      "price": "92",
       "productCount": 1
     },
     {
@@ -39,7 +39,7 @@
       "imgSrc": "https://images.unsplash.com/photo-1600375104627-c94c416deefa?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YWlycG9kfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
       "name": "Airpods 2nd generation",
       "description": "ineare earbuds wireless opentype",
-      "price": "154900",
+      "price": "154",
       "productCount": 1
     },
     {
@@ -47,7 +47,7 @@
       "imgSrc": "https://images.unsplash.com/photo-1600374917838-1df876d745c7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGdhbGF4eSUyMGJ1ZHN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
       "name": "Galaxy buds live",
       "description": "ineare earbuds wireless opentype",
-      "price": "211000",
+      "price": "211",
       "productCount": 1
     }
   ]

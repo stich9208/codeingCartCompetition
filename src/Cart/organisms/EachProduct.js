@@ -14,7 +14,7 @@ const EachProduct = ({ id, imgSrc, name, price, desc, count }) => {
         <InfoColumn>{desc}</InfoColumn>
       </DescSection>
       <CountBox id={id} count={count} />
-      <PriceSection>{price}</PriceSection>
+      <PriceSection>{Number(price).toLocaleString()}$</PriceSection>
       <DeleteBtn />
     </EachContainer>
   );
