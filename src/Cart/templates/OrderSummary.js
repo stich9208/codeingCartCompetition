@@ -6,11 +6,19 @@ import { CartListContext } from "../../Context";
 const OrderSummary = () => {
   const { cartList } = useContext(CartListContext);
   const [totalPrice, setTotalPrice] = useState("");
+  const [totalQuantity, setTotalQuantity] = useState("");
 
   useEffect(() => {
-    let price = cartList.reduce((acc, cur) => acc + Number(cur.price), 0);
-    setTotalPrice(price);
-  }, []);
+    setTotalPrice(
+      cartList.reduce(
+        (acc, cur) => acc + Number(cur.price) * cur.productCount,
+        0
+      )
+    );
+    setTotalQuantity(cartList.reduce((acc, cur) => acc + cur.productCount, 0));
+  }, [totalPrice, totalQuantity]);
+
+  console.log(totalPrice, totalQuantity);
 
   return (
     <SummaryContainer>
@@ -18,12 +26,15 @@ const OrderSummary = () => {
         <ColumnTitle>Total Cost :</ColumnTitle>
         <ColumnDesc>
           &nbsp;
-          {totalPrice}
+          {totalPrice} $
         </ColumnDesc>
       </TotalColumn>
       <TotalColumn>
-        <ColumnTitle></ColumnTitle>
-        <ColumnDesc></ColumnDesc>
+        <ColumnDesc>{cartList.length} Products</ColumnDesc>
+      </TotalColumn>
+      <TotalColumn>
+        <ColumnTitle>Total Quantity : </ColumnTitle>
+        <ColumnDesc>&nbsp;{totalQuantity}</ColumnDesc>
       </TotalColumn>
     </SummaryContainer>
   );
