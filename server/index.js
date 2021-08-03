@@ -6,20 +6,19 @@ const mongoose = require("mongoose");
 
 const { User } = require("./models/User");
 
+const config = require("./config/key");
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
 mongoose
-  .connect(
-    "mongodb+srv://j2w:cjswo12@nodereactbasic.26ntd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    }
-  )
+  .connect(config.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("mongo DB connected!"))
   .catch((err) => console.log("error!", err));
 
