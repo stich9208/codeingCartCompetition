@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import NavBar from "./NavBar";
-import CartContainer from "./Cart/pages/CartContainer";
+import CartContainer from "./Components/pages/CartContainer";
 
 import { CartListContext } from "./Context";
 
