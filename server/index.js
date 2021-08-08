@@ -1,8 +1,9 @@
 const express = require("express");
-const app = express();
-const port = 3000;
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+
+const app = express();
+const port = 3000;
 
 const { User } = require("./models/User");
 
@@ -33,6 +34,33 @@ app.post("/register", (req, res) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).json({
       success: true,
+    });
+  });
+});
+
+app.post("/login", (req, res) => {
+  //findOne => mongoDB 메서드
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (!user) {
+      return res.json({
+        loginSuccess: false,
+        message: "유저를 찾을 수 없습니다.",
+      });
+    }
+    user.comparePassword(req.body.password, (err, isMatch) => {
+      if (!isMatch)
+        return res.json({
+          loginSuccess: false,
+          message: "비밀번호가 틀렸습니다.",
+        });
+      user.generateToken((err, user) => {
+        err
+          ? res.status(400).send(err)
+          : res
+              .cookie("jwt", user.token)
+              .status(200)
+              .json({ loginSeccess: true, message: "로그인 되었습니다!" });
+      });
     });
   });
 });
