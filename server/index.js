@@ -3,11 +3,13 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 
 const app = express();
-const port = 3000;
+const port = 5000;
+
+const config = require("./config/key");
 
 const { User } = require("./models/User");
 
-const config = require("./config/key");
+const { auth } = require("./middleware/auth");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -27,7 +29,7 @@ app.get("/", (req, res) => {
   res.send("Hello!!!");
 });
 
-app.post("/register", (req, res) => {
+app.post("/api/user/register", (req, res) => {
   const user = new User(req.body);
 
   user.save((err, userInfo) => {
@@ -38,7 +40,7 @@ app.post("/register", (req, res) => {
   });
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/user/login", (req, res) => {
   //findOne => mongoDB 메서드
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
@@ -57,10 +59,32 @@ app.post("/login", (req, res) => {
         err
           ? res.status(400).send(err)
           : res
-              .cookie("jwt", user.token)
+              .cookie("auth_jwt", user.token)
               .status(200)
               .json({ loginSeccess: true, message: "로그인 되었습니다!" });
       });
+    });
+  });
+});
+
+app.get("/api/user/auth", auth, (req, res) => {
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image,
+  });
+});
+
+app.get("/api/user/logout", auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).json({
+      success: true,
     });
   });
 });

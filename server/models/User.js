@@ -60,12 +60,20 @@ userSchema.methods.comparePassword = function (plainPW, callback) {
 
 userSchema.methods.generateToken = function (callback) {
   const user = this;
-
   const token = jwt.sign(user._id.toHexString(), "jsonWebToken");
-
   user.token = token;
   user.save((err, user) => {
     err ? callback(err) : callback(null, user);
+  });
+};
+
+userSchema.statics.findByToken = function (token, callback) {
+  let user = this;
+  jwt.verify(token, "jsonWebToken", (err, decoded) => {
+    user.findOne({ _id: decoded, token: token }, (err, user) => {
+      if (err) return callback(err);
+      callback(null, user);
+    });
   });
 };
 
