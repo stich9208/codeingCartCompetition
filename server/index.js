@@ -25,10 +25,6 @@ mongoose
   .then(() => console.log("mongo DB connected!"))
   .catch((err) => console.log("error!", err));
 
-app.get("/", (req, res) => {
-  res.send("Hello!!!");
-});
-
 app.post("/api/user/register", (req, res) => {
   const user = new User(req.body);
 
