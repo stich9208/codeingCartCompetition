@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import LoginContainer from "./Components/pages/LoginContainer";
+import LoginPage from "./Components/pages/LoginPage";
 import SignupContainer from "./Components/pages/SignupContainer";
-import App from "./App";
+import CartPage from "./Components/pages/CartPage";
 
 const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login" component={LoginContainer} />
+        <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignupContainer} />
-        <Route exact path="/cart" component={App} />
+        <Route exact path="/cart" component={CartPage} />
       </Switch>
     </Router>
   );
