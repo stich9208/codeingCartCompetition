@@ -14,7 +14,7 @@ const NavBar = () => {
         }}
       />
       <TitleContainer>
-        <TitleImage src={"http://localhost:3000/image/logo.png"} />
+        <TitleImage src={"/images/mainLogo.png"} />
         <Title>Cart Man</Title>
       </TitleContainer>
       <TiShoppingCart

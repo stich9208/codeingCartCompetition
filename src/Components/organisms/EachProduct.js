@@ -1,14 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import ImageContainer from "../atom/ImageContainer";
+import ImageBox from "../atom/ImageBox";
 import CountBox from "../molecules/CountBox";
 import DeleteBtn from "../atom/DeleteBtn";
 
 const EachProduct = ({ id, imgSrc, name, price, desc, count }) => {
   return (
     <EachContainer id={id}>
-      <ImageContainer imgSrc={imgSrc} />
+      <ImageBox
+        imgSrc={imgSrc}
+        style={{
+          width: "13vmin",
+          height: "13vmin",
+          objectFit: "cover",
+          border: "3px solid #38b6ff",
+          borderRadius: "2vmin",
+        }}
+      />
       <DescSection>
         <NameColumn>{name}</NameColumn>
         <InfoColumn>{desc}</InfoColumn>

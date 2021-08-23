@@ -1,20 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 
 import LoginPage from "./Components/pages/LoginPage";
-import SignupContainer from "./Components/pages/SignupContainer";
 import CartPage from "./Components/pages/CartPage";
+import RegisterPage from "./Components/pages/RegisterPage";
 
 const Routes = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/signup" component={SignupContainer} />
-        <Route exact path="/cart" component={CartPage} />
-      </Switch>
-    </Router>
+    <RouteContainer>
+      <Router>
+        <Switch>
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/cart" component={CartPage} />
+          <Route exact path="/Register" component={RegisterPage} />
+        </Switch>
+      </Router>
+    </RouteContainer>
   );
 };
+
+const RouteContainer = styled.main`
+  width: calc(100vw - (100vw - 100%));
+  height: 100vh;
+  overflow-y: hidden;
+`;
 
 export default Routes;
