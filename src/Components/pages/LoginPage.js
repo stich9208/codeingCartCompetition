@@ -5,14 +5,16 @@ import Input from "../atom/Input";
 import Button from "../atom/Button";
 import Imagebox from "../atom/ImageBox";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
   const clickLoginBtn = () => {};
 
-  const clickRegisterBtn = () => {};
+  const clickRegisterBtn = () => {
+    props.history.push("/register");
+  };
 
   const inputFunc = (e) => {
     setLoginInfo({ ...loginInfo, [e.target.dataset.name]: e.target.value });
@@ -108,6 +110,7 @@ const LoginPage = () => {
                 textDecoration: "underline",
                 color: "#38b6ff",
               }}
+              clickFunc={clickRegisterBtn}
             />
           </ElseContainer>
         </LoginForm>
