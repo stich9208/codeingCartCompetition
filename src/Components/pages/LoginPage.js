@@ -77,7 +77,7 @@ const LoginPage = (props) => {
               width: "30vmin",
               height: "3vmin",
               padding: "2vmin",
-              fontSize: "1.2em",
+              fontSize: "1.2rem",
               fontWeight: "bold",
               border: `${
                 loginInfo.email !== "" && loginInfo.password !== ""
