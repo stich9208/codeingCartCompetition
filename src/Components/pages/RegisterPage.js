@@ -48,7 +48,7 @@ const RegisterPage = () => {
       <RegisterTitle>JOIN US!</RegisterTitle>
       <RegisterForm>
         <InputColumn>
-          <InputTitle for="email">Email</InputTitle>
+          <InputTitle>Email</InputTitle>
           <RegisterInput
             name="email"
             type="email"
@@ -56,9 +56,10 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </InputColumn>
-        <WarningText>please check format</WarningText>
+        <WarningText htmlfor="email">please check format</WarningText>
+
         <InputColumn>
-          <InputTitle for="password">Password</InputTitle>
+          <InputTitle>Password</InputTitle>
           <RegisterInput
             name="password"
             type="password"
@@ -66,19 +67,19 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </InputColumn>
-        <WarningText>please set password more than 5 characters</WarningText>
+        <WarningText>please set more than 5 characters</WarningText>
         <InputColumn>
-          <InputTitle for="pwVerify">Check Password</InputTitle>
-          <RegisterInput
+          <InputTitle>Check Password</InputTitle>
+          <CheckPwInput
             name="pwVerify"
             type="password"
             placeholder="Check Password"
             onChange={checkPwInputChange}
           />
         </InputColumn>
-        <WarningText>not match with password</WarningText>
+        <WarningText isPwMatch={isPwMatch}>not match with password</WarningText>
         <InputColumn>
-          <InputTitle for="name">First Name</InputTitle>
+          <InputTitle>First Name</InputTitle>
           <RegisterInput
             name="name"
             type="text"
@@ -88,7 +89,8 @@ const RegisterPage = () => {
         </InputColumn>
         <WarningText>please set your First Name</WarningText>
         <InputColumn>
-          <InputTitle for="lastname">Last Name</InputTitle>
+          <InputTitle>Last Name</InputTitle>
+
           <RegisterInput
             name="lastname"
             type="text"
@@ -199,9 +201,19 @@ const RegisterForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 50%;
-  min-width: 500px;
+  min-width: 300px;
   height: 100%;
   margin-top: 5vmin;
+`;
+
+const InputColumn = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 30px;
+  margin: 3vmin 0;
 `;
 
 const RegisterInput = styled.input`
@@ -217,22 +229,25 @@ const RegisterInput = styled.input`
   }
 `;
 
-const InputColumn = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 70%;
+const CheckPwInput = styled.input`
+  width: 60%;
   height: auto;
-  min-height: 30px;
-  margin: 1vmin 0;
+  padding: 1vmin;
+  border: 2px solid ${(props) => props.theme.themeColor.themeBlue};
+  border-radius: 1vmin;
+  background-color: white;
+  ::placeholder {
+    color: #38b6ff;
+    opacity: 0.5;
+  }
 `;
 
-const InputTitle = styled.label`
+const InputTitle = styled.span`
   font-weight: bold;
 `;
 
-const WarningText = styled.span`
-  display: none;
+const WarningText = styled.label`
+  display: ${(props) => (!props.isPwMatch ? "flex" : "none")};
   font-size: 0.5rem;
   font-weight: bold;
   opacity: 0.5;
