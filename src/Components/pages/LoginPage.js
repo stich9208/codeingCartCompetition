@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 
 import Input from "../atom/Input";
 import Button from "../atom/Button";
 import Imagebox from "../atom/ImageBox";
 
 const LoginPage = (props) => {
+  const theme = useTheme();
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -28,8 +29,8 @@ const LoginPage = (props) => {
           style={{
             width: "20vmin",
             height: "20vmin",
-            marginTop: "10vmin",
-            border: "5px solid #38b6ff",
+            marginTop: "5vmin",
+            border: `5px solid ${theme.themeColor.themeBlue}`,
             borderRadius: "50%",
           }}
           alt="logo"
@@ -43,11 +44,12 @@ const LoginPage = (props) => {
             placeholder="email"
             style={{
               width: "30vmin",
-              height: "3vmin",
-              margin: "5vmin 0",
-              padding: "2vmin",
-              border: "solid 2px #38b6ff",
+              height: "auto",
+              margin: "5vmin 0 3vmin 0",
+              padding: "1.2vmin 2vmin",
+              border: `solid 2px ${theme.themeColor.themeBlue}`,
               borderRadius: "1vmin",
+              fontSize: "2.5vmin",
               backgroundColor: "white",
             }}
             inputFunc={inputFunc}
@@ -59,11 +61,12 @@ const LoginPage = (props) => {
             placeholder="password"
             style={{
               width: "30vmin",
-              height: "3vmin",
-              marginBottom: "5vmin",
-              padding: "2vmin",
-              border: "solid 2px #38b6ff",
+              height: "auto",
+              marginBottom: "3vmin",
+              padding: "1.2vmin 2vmin",
+              border: `solid 2px ${theme.themeColor.themeBlue}`,
               borderRadius: "1vmin",
+              fontSize: "2.5vmin",
               backgroundColor: "white",
             }}
             inputFunc={inputFunc}
@@ -81,18 +84,18 @@ const LoginPage = (props) => {
               fontWeight: "bold",
               border: `${
                 loginInfo.email !== "" && loginInfo.password !== ""
-                  ? "solid 2px #38b6ff"
+                  ? `solid 2px ${theme.themeColor.themeBlue}`
                   : "solid 2px transparent"
               }`,
               borderRadius: "1vmin",
               color: `${
                 loginInfo.email !== "" && loginInfo.password !== ""
                   ? "white"
-                  : "#38b6ff"
+                  : `${theme.themeColor.themeBlue}`
               }`,
               backgroundColor: `${
                 loginInfo.email !== "" && loginInfo.password !== ""
-                  ? "#38b6ff"
+                  ? `${theme.themeColor.themeBlue}`
                   : "transparent"
               }`,
             }}
@@ -105,10 +108,10 @@ const LoginPage = (props) => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                fontSize: "0.5em",
+                fontSize: "1em",
                 fontWeight: "bold",
                 textDecoration: "underline",
-                color: "#38b6ff",
+                color: `${theme.themeColor.themeBlue}`,
               }}
               clickFunc={clickRegisterBtn}
             />
@@ -125,7 +128,7 @@ const LoginContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(#fafafa, #eaeaea);
 `;
 
@@ -139,7 +142,7 @@ const ElseContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 2vmin;
-  font-size: 0.5em;
+  font-size: 0.6em;
 `;
 
 const Title = styled.span`

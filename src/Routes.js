@@ -22,7 +22,7 @@ const Routes = () => {
 
 const RouteContainer = styled.main`
   width: calc(100vw - (100vw - 100%));
-  height: 100vh;
+  height: 100%;
   overflow-y: hidden;
 `;
 
