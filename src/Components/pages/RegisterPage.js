@@ -5,6 +5,8 @@ import Button from "../atom/Button";
 import Imagebox from "../atom/ImageBox";
 
 const RegisterPage = () => {
+  const theme = useTheme();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,8 +14,12 @@ const RegisterPage = () => {
     lastname: "",
   });
   const [shakeElem, setShakeElem] = useState("");
-  const [isPwMatch, setIsPwMatch] = useState("");
-  const theme = useTheme();
+  const [warningElem, setWarningElem] = useState("");
+  const [isPwMatch, setIsPwMatch] = useState(true);
+
+  useEffect(() => {
+    isPwMatch ? setWarningElem("") : setWarningElem("pwVerify");
+  }, [isPwMatch]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,6 +32,8 @@ const RegisterPage = () => {
     }
   };
 
+  console.log(isPwMatch, warningElem);
+
   const clickSignupBtn = async (e) => {
     e.preventDefault();
     const emailReg = new RegExp(
@@ -33,19 +41,27 @@ const RegisterPage = () => {
     );
     if (!emailReg.test(formData.email)) {
       setShakeElem("email");
+      setWarningElem("email");
     } else if (formData.password.length < 5) {
       setShakeElem("password");
+      setWarningElem("password");
     } else if (formData.name === "") {
       setShakeElem("name");
+      setWarningElem("name");
     } else if (formData.lastname === "") {
       setShakeElem("lastname");
+      setWarningElem("lastname");
     } else {
       alert("success!");
+      setShakeElem("");
+      setWarningElem("");
     }
   };
 
-  console.log(shakeElem);
-  console.log(isPwMatch);
+  const resetShakeElem = () => {
+    setShakeElem("");
+  };
+
   return (
     <RegisterContainer>
       <Imagebox
@@ -70,8 +86,10 @@ const RegisterPage = () => {
               placeholder="Email"
               onChange={handleInputChange}
               shakeElem={shakeElem}
+              warningElem={warningElem}
+              onAnimationEnd={resetShakeElem}
             />
-            <WarningText shakeElem={shakeElem} name="email">
+            <WarningText warningElem={warningElem} name="email">
               not valid email address
             </WarningText>
           </InputRow>
@@ -86,8 +104,9 @@ const RegisterPage = () => {
               placeholder="Password"
               onChange={handleInputChange}
               shakeElem={shakeElem}
+              onAnimationEnd={resetShakeElem}
             />
-            <WarningText shakeElem={shakeElem} name="password">
+            <WarningText warningElem={warningElem} name="password">
               please set more than 5 characters
             </WarningText>
           </InputRow>
@@ -102,8 +121,9 @@ const RegisterPage = () => {
               placeholder="Confirm Password"
               onChange={checkPwInputChange}
               shakeElem={shakeElem}
+              onAnimationEnd={resetShakeElem}
             />
-            <WarningText isPwMatch={isPwMatch}>
+            <WarningText warningElem={warningElem} name="pwVerify">
               not match with password
             </WarningText>
           </InputRow>
@@ -118,8 +138,9 @@ const RegisterPage = () => {
               placeholder="First Name"
               onChange={handleInputChange}
               shakeElem={shakeElem}
+              onAnimationEnd={resetShakeElem}
             />
-            <WarningText shakeElem={shakeElem} name="name">
+            <WarningText warningElem={warningElem} name="name">
               please set your First Name
             </WarningText>
           </InputRow>
@@ -133,8 +154,9 @@ const RegisterPage = () => {
               placeholder="Last Name"
               onChange={handleInputChange}
               shakeElem={shakeElem}
+              onAnimationEnd={resetShakeElem}
             />
-            <WarningText shakeElem={shakeElem} name="lastname">
+            <WarningText warningElem={warningElem} name="lastname">
               please set your Last Name
             </WarningText>
           </InputRow>
@@ -299,7 +321,7 @@ const InputTitle = styled.span`
 `;
 
 const WarningText = styled.span`
-  display: ${(props) => (props.shakeElem === props.name ? "flex" : "none")};
+  display: ${(props) => (props.warningElem === props.name ? "flex" : "none")};
   margin-top: 1vmin;
   font-size: 0.8rem;
   font-weight: bold;
