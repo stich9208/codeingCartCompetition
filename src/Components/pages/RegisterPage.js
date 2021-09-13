@@ -4,6 +4,8 @@ import styled, { useTheme, keyframes } from "styled-components";
 import Button from "../atom/Button";
 import Imagebox from "../atom/ImageBox";
 
+import { emailReg } from "../../global.js";
+
 const RegisterPage = () => {
   const theme = useTheme();
 
@@ -36,9 +38,6 @@ const RegisterPage = () => {
 
   const clickSignupBtn = async (e) => {
     e.preventDefault();
-    const emailReg = new RegExp(
-      /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-    );
     if (!emailReg.test(formData.email)) {
       setShakeElem("email");
       setWarningElem("email");
@@ -286,7 +285,7 @@ const RegisterInput = styled.input`
   width: 100%;
   height: auto;
   padding: 1.2vmin 1vmin;
-  border: 2px solid ${(props) => props.theme.themeColor.themeBlue};
+  border: 3px solid ${(props) => props.theme.themeColor.themeBlue};
   border-radius: 1vmin;
   font-size: 2.5vmin;
   background-color: white;
@@ -304,7 +303,7 @@ const CheckPwInput = styled.input`
   width: 100%;
   height: auto;
   padding: 1.2vmin 1vmin;
-  border: 2px solid ${(props) => props.theme.themeColor.themeBlue};
+  border: 3px solid ${(props) => props.theme.themeColor.themeBlue};
   border-radius: 1vmin;
   font-size: 2.5vmin;
   background-color: white;

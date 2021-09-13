@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled, { useTheme } from "styled-components";
+import { TiShoppingCart } from "react-icons/ti";
 
 import Input from "../atom/Input";
 import Button from "../atom/Button";
 import Imagebox from "../atom/ImageBox";
+
+import { emailReg } from "../../global.js";
 
 const LoginPage = (props) => {
   const theme = useTheme();
@@ -11,7 +14,16 @@ const LoginPage = (props) => {
     email: "",
     password: "",
   });
-  const clickLoginBtn = () => {};
+  const clickLoginBtn = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:5000/api/user/login", {
+      method: "POST",
+      body: loginInfo,
+      mode: "no-cors",
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   const clickRegisterBtn = () => {
     props.history.push("/register");
@@ -41,13 +53,13 @@ const LoginPage = (props) => {
             name="email"
             type="email"
             value={loginInfo.email}
-            placeholder="email"
+            placeholder="Email"
             style={{
               width: "30vmin",
               height: "auto",
               margin: "5vmin 0 3vmin 0",
-              padding: "1.2vmin 2vmin",
-              border: `solid 2px ${theme.themeColor.themeBlue}`,
+              padding: "1.2vmin 1vmin",
+              border: `3px solid${theme.themeColor.themeBlue}`,
               borderRadius: "1vmin",
               fontSize: "2.5vmin",
               backgroundColor: "white",
@@ -58,13 +70,13 @@ const LoginPage = (props) => {
             name="password"
             type="password"
             value={loginInfo.password}
-            placeholder="password"
+            placeholder="Password"
             style={{
               width: "30vmin",
               height: "auto",
               marginBottom: "3vmin",
-              padding: "1.2vmin 2vmin",
-              border: `solid 2px ${theme.themeColor.themeBlue}`,
+              padding: "1.2vmin 1vmin",
+              border: `3px solid ${theme.themeColor.themeBlue}`,
               borderRadius: "1vmin",
               fontSize: "2.5vmin",
               backgroundColor: "white",
@@ -72,34 +84,49 @@ const LoginPage = (props) => {
             inputFunc={inputFunc}
           />
           <Button
-            btnTitle="Log in"
+            btnTitle="Log In"
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              position: "relative",
               width: "30vmin",
               height: "3vmin",
               padding: "2vmin",
-              fontSize: "1.2rem",
+              fontSize: "1.5rem",
               fontWeight: "bold",
               border: `${
-                loginInfo.email !== "" && loginInfo.password !== ""
+                emailReg.test(loginInfo.email) && loginInfo.password.length >= 5
                   ? `solid 2px ${theme.themeColor.themeBlue}`
                   : "solid 2px transparent"
               }`,
               borderRadius: "1vmin",
               color: `${
-                loginInfo.email !== "" && loginInfo.password !== ""
+                emailReg.test(loginInfo.email) && loginInfo.password.length >= 5
                   ? "white"
                   : `${theme.themeColor.themeBlue}`
               }`,
               backgroundColor: `${
-                loginInfo.email !== "" && loginInfo.password !== ""
+                emailReg.test(loginInfo.email) && loginInfo.password.length >= 5
                   ? `${theme.themeColor.themeBlue}`
                   : "transparent"
               }`,
             }}
-          />
+            clickFunc={clickLoginBtn}
+          >
+            <TiShoppingCart
+              style={{
+                display: `${
+                  emailReg.test(loginInfo.email) &&
+                  loginInfo.password.length >= 5
+                    ? "block"
+                    : "none"
+                }`,
+                position: "absolute",
+                right: 10,
+              }}
+            />
+          </Button>
           <ElseContainer>
             Not a member yet?
             <Button
@@ -142,7 +169,7 @@ const ElseContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 2vmin;
-  font-size: 0.6em;
+  font-size: 0.8em;
 `;
 
 const Title = styled.span`

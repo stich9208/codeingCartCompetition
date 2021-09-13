@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = ({ style, btnTitle, clickFunc, disabled }) => {
+const Button = ({ style, btnTitle, clickFunc, disabled, children }) => {
   return (
     <ButtonBox
       style={style}
@@ -11,6 +11,8 @@ const Button = ({ style, btnTitle, clickFunc, disabled }) => {
       disabled={disabled}
     >
       {btnTitle ? btnTitle : "button"}
+      &nbsp;
+      {children ? children : ""}
     </ButtonBox>
   );
 };
