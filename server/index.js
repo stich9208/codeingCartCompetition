@@ -37,6 +37,7 @@ app.post("/api/user/register", (req, res) => {
 });
 
 app.post("/api/user/login", (req, res) => {
+  console.log(req);
   //findOne => mongoDB 메서드
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {

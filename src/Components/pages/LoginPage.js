@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { useTheme } from "styled-components";
+import axios from "axios";
 import { TiShoppingCart } from "react-icons/ti";
 
 import Input from "../atom/Input";
@@ -14,15 +15,20 @@ const LoginPage = (props) => {
     email: "",
     password: "",
   });
+
   const clickLoginBtn = (e) => {
+    console.log(loginInfo);
     e.preventDefault();
-    fetch("http://localhost:5000/api/user/login", {
+    fetch("/api/user/login", {
       method: "POST",
-      body: loginInfo,
-      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginInfo),
     })
+      .then((res) => res.json())
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("err", err));
   };
 
   const clickRegisterBtn = () => {
