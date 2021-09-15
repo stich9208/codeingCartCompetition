@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled, { useTheme } from "styled-components";
-import axios from "axios";
 import { TiShoppingCart } from "react-icons/ti";
 
 import Input from "../atom/Input";

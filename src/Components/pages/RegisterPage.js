@@ -6,7 +6,7 @@ import Imagebox from "../atom/ImageBox";
 
 import { emailReg } from "../../global.js";
 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
   const theme = useTheme();
 
   const [formData, setFormData] = useState({
@@ -34,8 +34,6 @@ const RegisterPage = () => {
     }
   };
 
-  console.log(isPwMatch, warningElem);
-
   const clickSignupBtn = async (e) => {
     e.preventDefault();
     if (!emailReg.test(formData.email)) {
@@ -51,7 +49,21 @@ const RegisterPage = () => {
       setShakeElem("lastname");
       setWarningElem("lastname");
     } else {
-      alert("success!");
+      fetch("/api/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.success) {
+            alert("regist success!");
+            props.history.push("/login");
+          }
+        })
+        .catch((err) => console.log(err));
       setShakeElem("");
       setWarningElem("");
     }
@@ -83,10 +95,10 @@ const RegisterPage = () => {
               name="email"
               type="text"
               placeholder="Email"
-              onChange={handleInputChange}
               shakeElem={shakeElem}
               warningElem={warningElem}
               onAnimationEnd={resetShakeElem}
+              onChange={handleInputChange}
             />
             <WarningText warningElem={warningElem} name="email">
               not valid email address
@@ -101,9 +113,9 @@ const RegisterPage = () => {
               name="password"
               type="password"
               placeholder="Password"
-              onChange={handleInputChange}
               shakeElem={shakeElem}
               onAnimationEnd={resetShakeElem}
+              onChange={handleInputChange}
             />
             <WarningText warningElem={warningElem} name="password">
               please set more than 5 characters
@@ -118,9 +130,9 @@ const RegisterPage = () => {
               name="pwVerify"
               type="password"
               placeholder="Confirm Password"
-              onChange={checkPwInputChange}
               shakeElem={shakeElem}
-              onAnimationEnd={resetShakeElem}
+              isPwMatch={isPwMatch}
+              onChange={checkPwInputChange}
             />
             <WarningText warningElem={warningElem} name="pwVerify">
               not match with password
@@ -135,9 +147,9 @@ const RegisterPage = () => {
               name="name"
               type="text"
               placeholder="First Name"
-              onChange={handleInputChange}
               shakeElem={shakeElem}
               onAnimationEnd={resetShakeElem}
+              onChange={handleInputChange}
             />
             <WarningText warningElem={warningElem} name="name">
               please set your First Name
@@ -151,9 +163,9 @@ const RegisterPage = () => {
               name="lastname"
               type="text"
               placeholder="Last Name"
-              onChange={handleInputChange}
               shakeElem={shakeElem}
               onAnimationEnd={resetShakeElem}
+              onChange={handleInputChange}
             />
             <WarningText warningElem={warningElem} name="lastname">
               please set your Last Name
@@ -303,7 +315,10 @@ const CheckPwInput = styled.input`
   width: 100%;
   height: auto;
   padding: 1.2vmin 1vmin;
-  border: 3px solid ${(props) => props.theme.themeColor.themeBlue};
+  border: ${(props) =>
+    props.isPwMatch
+      ? `3px solid ${props.theme.themeColor.themeBlue}`
+      : "3px solid red"};
   border-radius: 1vmin;
   font-size: 2.5vmin;
   background-color: white;
